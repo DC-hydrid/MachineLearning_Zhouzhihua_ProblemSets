@@ -55,18 +55,18 @@ num_split = int(m / 10)
 score_my = []
 for i in range(10):
     lr_ = linear_model.LogisticRegression(C=2)
-    test_index = range(i * num_split, (i + 1) * num_split)
-    X_test_ = X[test_index]
+    test_index = range(i * num_split, (i + 1) * num_split)                  #这一步用于得到测试集的元素位置
+    X_test_ = X[test_index]                                                 #得到对应得测试得数据，，， 一个是输入x  一个是结果值y
     y_test_ = y[test_index]
 
-    X_train_ = np.delete(X, test_index, axis=0)
+    X_train_ = np.delete(X, test_index, axis=0)                             # _train数据用于训练模型
     y_train_ = np.delete(y, test_index, axis=0)
 
-    lr_.fit(X_train_, y_train_)
+    lr_.fit(X_train_, y_train_)                                             #模型的适应
 
-    score_my.append(lr_.score(X_test_, y_test_))
+    score_my.append(lr_.score(X_test_, y_test_))                            #利用测试集对测试集进行预测
 
-print(np.mean(score_my))
+print(np.mean(score_my))                                                    #应该是用于计算误差的
 
 # LOO
 score_my_loo = []
